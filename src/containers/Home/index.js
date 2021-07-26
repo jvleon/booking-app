@@ -1,10 +1,12 @@
 import React from 'react'
-import { Container } from './styled'
-
+import { Container, Main } from './styled'
+import ScheduleBar from '../../components/SheduleBar'
 const Home = () => {
   return (
     <Container>
-      Home
+      <Main>
+        <ScheduleBar />
+      </Main>
     </Container>
   )
 }
