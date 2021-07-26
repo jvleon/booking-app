@@ -43,7 +43,7 @@ const ScheduleBar = () => {
         <Selector options={cities} />
       </Box>
       <Box flex="2">
-        <Button text='Buscar' />
+        <Button text='Buscar' primary/>
       </Box>
     </Container>
   )

@@ -11,16 +11,15 @@ export const StyledButton = styled.button`
   border: none;
   cursor: pointer;
   transition: .5s;
-  background: #12c2e9;
   background: -webkit-linear-gradient(
     to right,
-    ${({ theme: { colors } }) => colors.altern},
-    ${({ theme: { colors } }) => colors.secondary}
+    ${({ primary, theme: { colors } }) => primary ? colors.altern : colors.primary},
+    ${({ primary, theme: { colors } }) => primary ? colors.secondary : colors.altern}
   );
   background: linear-gradient(
     to right,
-    ${({ theme: { colors } }) => colors.altern},
-    ${({ theme: { colors } }) => colors.secondary}
+    ${({ primary, theme: { colors } }) => primary ? colors.altern : colors.primary},
+    ${({ primary, theme: { colors } }) => primary ? colors.secondary : colors.altern}
   );
   :hover {
     box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.3);
@@ -28,13 +27,13 @@ export const StyledButton = styled.button`
     -moz-box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.3);
     background: -webkit-linear-gradient(
       to right,
-      ${({ theme: { colors } }) => colors.primary},
-      ${({ theme: { colors } }) => colors.altern}
+      ${({ primary, theme: { colors } }) => primary ? colors.primary : colors.altern},
+      ${({ primary, theme: { colors } }) => primary ? colors.altern : colors.secondary}
     );
     background: linear-gradient(
       to right,
-      ${({ theme: { colors } }) => colors.primary},
-      ${({ theme: { colors } }) => colors.altern}
+      ${({ primary, theme: { colors } }) => primary ? colors.primary : colors.altern},
+      ${({ primary, theme: { colors } }) => primary ? colors.altern : colors.secondary}
     );
   }
   :active {
