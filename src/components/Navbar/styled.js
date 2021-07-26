@@ -5,11 +5,16 @@ import { FaPlaneArrival } from 'react-icons/fa'
 export const Container = styled.nav`
   width: 100%;
   height: 60px;
+  padding: 0 4rem;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid ${({ theme: {colors} }) => colors.primary}
+  border-bottom: 2px solid ${({ theme: { colors } }) => colors.altern};
+  box-shadow: -2px 26px 21px -11px rgba(0,0,0,0.15);
+  -webkit-box-shadow: -2px 26px 21px -11px rgba(0,0,0,0.15);
+  -moz-box-shadow: -2px 26px 21px -11px rgba(0,0,0,0.15);
 `
 
 export const ButtonsContainer = styled.div`
@@ -25,22 +30,27 @@ export const ButtonNavigation = styled(Link)`
   text-decoration: none;
   font-weight: 600;
   font-size: 1.2rem;
-  color: ${({ theme: { colors } }) => colors.primary};
-  : hover {
+  transition: .3s;
+  color: ${({ theme: { colors } }) => colors.altern};
+  :hover {
     color: ${({ theme: { colors } }) => colors.secondary};
   }
 `
 
 export const Brand = styled.div`
+  padding-left: 1rem;
+  > a {
     display: flex;
-  > span {
+    text-decoration: none;
+  }
+  > a > span {
     font-weight: 600;
-    padding-left: 1rem;
+    padding-left: .3rem;
     font-size: 1.3rem;
     background-image: linear-gradient(
       45deg,
-      ${({ theme: { colors } }) => colors.primary},
-      ${({ theme: { colors } }) => colors.altern}
+      ${({ theme: { colors } }) => colors.altern},
+      ${({ theme: { colors } }) => colors.primary}
     );
     background-size: 100%;
     background-clip: text;
@@ -52,7 +62,7 @@ export const Brand = styled.div`
   }
 `
 
-export const Icon = styled(FaPlaneArrival).attrs({
+export const IconPlane = styled(FaPlaneArrival).attrs({
   size: '1.3em'
 })`
   margin-top: .1rem;

@@ -1,23 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 import {
   Container,
   ButtonsContainer,
   Brand,
   ButtonNavigation,
-  Icon,
+  IconPlane,
 } from './styled'
 
 const Navbar = () => {
   return (
     <Container>
       <Brand>
-        <span>
-          Aterrizar
-        </span>
-        <div>
-          <Icon />
-        </div>
+        <Link to="/">
+          <div>
+            <IconPlane />
+          </div>
+          <span>
+            Aterrizar.com
+          </span>
+        </Link>
       </Brand>
       <ButtonsContainer>
         <ButtonNavigation to='/login'>Login</ButtonNavigation>
