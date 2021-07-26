@@ -5,7 +5,7 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding: 1rem;
+  padding: 0 1rem;
   align-items: center;
   box-sizing: border-box;
 `
@@ -21,4 +21,8 @@ export const Main = styled.section`
   -webkit-box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
   -moz-box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
   border-radius: 10px;
+`
+export const Title = styled.h2`
+  font-size: 1.5rem;
+  color: ${({ theme: { colors } }) => colors.altern};
 `

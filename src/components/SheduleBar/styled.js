@@ -6,9 +6,16 @@ export const Container = styled.div`
   flex-direction: row;
 `
 
+export const Label = styled.span`
+  color: ${({ theme: { colors } }) => colors.inputBorder};
+  margin-bottom: .3rem;
+`
+
 export const Box = styled.div`
+  display: flex;
   box-sizing: border-box;
   flex-direction: column;
+  justify-content: flex-end;
   flex-grow: ${({ flex }) => flex || 10};
   margin: 0 .2rem;
   > div {
@@ -21,8 +28,9 @@ export const Box = styled.div`
   .react-datepicker__input-container,
   .react-datepicker__input-container input {
     width: 100%;
-    height: 100%;
+    height: 38px;
     background: transparent;
+    outline: none;
   }
   > .datePicker {
     padding: 0 1rem;

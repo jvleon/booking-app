@@ -5,7 +5,8 @@ import Button from '../Button'
 import Selector from '../Selector'
 import {
   Container,
-  Box
+  Box,
+  Label
 } from './styled'
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -22,12 +23,15 @@ const ScheduleBar = () => {
   return (
     <Container>
       <Box>
+        <Label>Origen</Label>
         <Select options={cities} />
       </Box>
       <Box>
+        <Label>Destino</Label>
         <Select options={cities} />
       </Box>
       <Box flex="5">
+        <Label>Fecha</Label>
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
@@ -35,6 +39,7 @@ const ScheduleBar = () => {
         />      
       </Box>
       <Box flex="1">
+        <Label>Pasajeros</Label>
         <Selector options={cities} />
       </Box>
       <Box flex="2">

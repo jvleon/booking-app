@@ -17,9 +17,9 @@ const Navbar = () => {
           <div>
             <IconPlane />
           </div>
-          <span>
+          <h1>
             Aterrizar.com
-          </span>
+          </h1>
         </Link>
       </Brand>
       <ButtonsContainer>

@@ -2,9 +2,10 @@ import styled from 'styled-components'
 
 export const StyledButton = styled.button`
   width: ${({ width }) => width || '100%'};
+  align-self: flex-end;
   font-size: 1.2rem;
   font-weight: 600;
-  height: 100%;
+  height: 38px;
   color: white;
   border-radius: 4px;
   border: none;

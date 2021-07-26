@@ -43,7 +43,7 @@ export const Brand = styled.div`
     display: flex;
     text-decoration: none;
   }
-  > a > span {
+  > a > h1 {
     font-weight: 600;
     padding-left: .3rem;
     font-size: 1.3rem;
@@ -59,6 +59,12 @@ export const Brand = styled.div`
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
+  }
+  > a > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: .3rem;
   }
 `
 
