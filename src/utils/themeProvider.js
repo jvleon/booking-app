@@ -4,7 +4,8 @@ const theme = {
   colors: {
     primary: "#f64f59",
     secondary: "#12c2e9",
-    altern: "#c471ed"
+    altern: "#c471ed",
+    inputBorder: "#cccccc"
   }
 }
 
