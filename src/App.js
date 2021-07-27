@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import DB from './database.config'
 import Home from './containers/Home'
+import Cart from './containers/Cart'
 import GlobalCSS from './utils/globalStyles'
 import Navbar from './components/Navbar'
 import ThemeWrapper from './utils/themeProvider'
@@ -24,6 +25,7 @@ function App() {
         <Router>
           <Navbar />
           <Route exact path='/' component={Home} />
+          <Route path='/cart' component={Cart} />
         </Router>
       </Provider>
     </ThemeWrapper>
