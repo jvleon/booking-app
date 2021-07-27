@@ -15,6 +15,12 @@ export const Container = styled.nav`
   box-shadow: -2px 26px 21px -11px rgba(0,0,0,0.15);
   -webkit-box-shadow: -2px 26px 21px -11px rgba(0,0,0,0.15);
   -moz-box-shadow: -2px 26px 21px -11px rgba(0,0,0,0.15);
+  @media screen and (max-width: 768px) {
+    padding: 0 1rem;
+  }
+  @media screen and (max-width: 480px) {
+    padding: 0 .5rem;
+  }
 `
 
 export const ButtonsContainer = styled.div`

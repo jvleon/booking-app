@@ -4,6 +4,9 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 export const Label = styled.span`
@@ -38,5 +41,8 @@ export const Box = styled.div`
     border-radius: 5px;
     background: white;
     border: 1px solid ${({ theme: { colors } }) => colors.inputBorder} !important;
+  }
+  @media screen and (max-width: 768px) {
+    margin: .5rem 0;
   }
 `

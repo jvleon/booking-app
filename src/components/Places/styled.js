@@ -38,4 +38,22 @@ export const Box = styled.div`
   box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
   -webkit-box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
   -moz-box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
+  @media screen and (max-width: 968px) {
+    max-width: 100%;
+    min-width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    > img {
+      align-self: center;
+      width: 500px;
+      height: auto;
+    }
+  }
+  @media screen and (max-width: 645px) {
+    height: auto;
+    > img {
+      width: 100%;
+    }
+  }
 `
