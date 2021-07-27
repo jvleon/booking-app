@@ -33,4 +33,19 @@ export const Row = styled.div`
       font-weight: 600;
     }
   }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    > div {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    > div {
+      flex-direction: column;
+      > button {
+        margin: .5rem;
+      }
+    }
+  }
 `
