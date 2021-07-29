@@ -30,6 +30,9 @@ export const Card = styled.div`
       font-weight: 600;
       margin-right: .5rem;
     }
+    > span:last-child {
+      text-transform: capitalize;
+    }
   }
   @media screen and (max-width: 940px) {
     width: 45%;

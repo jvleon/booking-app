@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { setToCart } from '../../actions'
 import Button from '../Button'
 import {
   Container,
@@ -6,67 +8,59 @@ import {
   Title,
 } from './styled'
 
-const SearchResults = () => (
-  <Container>
-    <Title>Resultados de la busqueda:</Title>
-    <Card>
-      <div>
-        <span className="title">Fecha:</span>
-        <span>05/05/2021</span>
-      </div>
-      <div>
-        <span className="title">Aerolinea:</span>
-        <span>Aeromexico</span>
-      </div>
-      <div>
-        <span className="title">Pasajeros:</span>
-        <span>2</span>
-      </div>
-      <div>
-        <span className="title">Costo:</span>
-        <span>$10,000.00</span>
-      </div>
-      <Button text='Reservar' />
-    </Card>
-    <Card>
-      <div>
-        <span className="title">Fecha:</span>
-        <span>05/05/2021</span>
-      </div>
-      <div>
-        <span className="title">Aerolinea:</span>
-        <span>Aeromexico</span>
-      </div>
-      <div>
-        <span className="title">Pasajeros:</span>
-        <span>2</span>
-      </div>
-      <div>
-        <span className="title">Costo:</span>
-        <span>$10,000.00</span>
-      </div>
-      <Button text='Reservar' />
-    </Card>
-    <Card>
-      <div>
-        <span className="title">Fecha:</span>
-        <span>05/05/2021</span>
-      </div>
-      <div>
-        <span className="title">Aerolinea:</span>
-        <span>Aeromexico</span>
-      </div>
-      <div>
-        <span className="title">Pasajeros:</span>
-        <span>2</span>
-      </div>
-      <div>
-        <span className="title">Costo:</span>
-        <span>$10,000.00</span>
-      </div>
-      <Button text='Reservar' />
-    </Card>
-  </Container>
-)
+const SearchResults = ({ search, ...props }) => {
+  const save = (index) => {
+    props.setToCart(search[index])
+  }
+  return (
+    <Container>
+      <Title>Resultados de la busqueda:</Title>
+      {
+        search.map(({ date, from, to, passengers }, i) => (
+          <Card key={i}>
+            <div>
+              <span className="title">Origen:</span>
+              <span>{from.city_name}</span>
+            </div>
+            <div>
+              <span className="title">Destino:</span>
+              <span>{to.city_name}</span>
+            </div>
+            <div>
+              <span className="title">Fecha:</span>
+              <span>{`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}</span>
+            </div>
+            <div>
+              <span className="title">Hora:</span>
+              <span>{`${date.getHours()}:00`}</span>
+            </div>
+            <div>
+              <span className="title">Aerolinea:</span>
+              <span>{from.airline}</span>
+            </div>
+            <div>
+              <span className="title">Pasajeros:</span>
+              <span>{passengers}</span>
+            </div>
+            <div>
+              <span className="title">Costo:</span>
+              <span>$ {from.price}</span>
+            </div>
+            <Button text='Reservar' onClick={() => save(i)} />
+          </Card>
 
-export default SearchResults
+        )) 
+      }
+    </Container>
+  )
+}
+
+const mapStateToProps = ({ cart }) => ({
+  search: cart.search
+})
+
+const mapDispatchToProps = {
+  setToCart
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)

@@ -28,7 +28,12 @@ export const Button = styled.button`
   }
 
   :active > svg {
-    color: black;
+    ${({ disabled }) => {
+      if(!disabled) {
+        return 'color: black;'
+      }
+    }};
+    
   }
 
   :active {
@@ -57,4 +62,11 @@ export const StyledInput = styled.input`
   border-left-style: solid;
   border-right-width: 1px;
   border-right-style: solid;
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+
+  -moz-appearance:textfield;
 `

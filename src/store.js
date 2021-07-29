@@ -1,6 +1,9 @@
 
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import Cities from './reducers'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { combineReducers } from 'redux'
+import { Cities, Cart } from './reducers'
 
-export default createStore(Cities, applyMiddleware(thunk))
+const rootReducer = combineReducers({ cities: Cities, cart: Cart })
+
+export default createStore(rootReducer, applyMiddleware(thunk))

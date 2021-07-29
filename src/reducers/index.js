@@ -1,19 +1,7 @@
-import { GET_CITIES } from '../actions/actionTypes'
+import Cities from './cities.reducer'
+import Cart from './cart.reducer'
 
-const initialState = {
-  cities: [],
+export {
+  Cities,
+  Cart
 }
-
-const Cities = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case GET_CITIES:
-      return {
-        ...state,
-        cities: [...payload]
-      }
-    default:
-      return state
-  }
-}
-
-export default Cities
