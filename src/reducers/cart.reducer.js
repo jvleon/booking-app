@@ -7,7 +7,7 @@ import {
 } from '../actions/actionTypes'
 
 const initialState = {
-  orders: {},
+  orders: [],
   search: [],
   personalInfo: {
     name: null,
@@ -20,9 +20,11 @@ const initialState = {
 const Cart = (state = initialState, { type, payload }) => {
   switch(type) {
     case SET_TO_CART:
+      const { orders } = state
+      const newOrders = [...orders, payload]
       return {
         ...state,
-        orders: { ...payload },
+        orders: newOrders,
         search: []
       }
     case CLEAN_CART:

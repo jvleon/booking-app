@@ -9,3 +9,9 @@ export const Container = styled.main`
   align-items: center;
   box-sizing: border-box;
 `
+
+export const Title = styled.h2`
+  width: 100%;
+  font-size: 1.5rem;
+  color: ${({ theme: { colors } }) => colors.primary};
+`

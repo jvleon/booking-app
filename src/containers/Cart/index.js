@@ -1,11 +1,24 @@
 import React from 'react'
-import { Container } from './styled'
+import { connect } from 'react-redux'
+import { Container, Title } from './styled'
 import CartCard from '../../components/CartCard'
 
-const Cart = () => (
+const Cart = ({ orders }) => (
   <Container>
-    <CartCard />
+    {orders.length > 0 ?
+      orders.map((order, i) => (
+        <CartCard {...order} key={i} />
+      ))
+      :
+      (
+        <Title>Sin reservas realizadas</Title>
+      )
+    }
   </Container>
 )
 
-export default Cart
+const mapStateToProps = ({ cart }) => ({
+  orders: cart.orders
+})
+
+export default connect(mapStateToProps, null)(Cart)
