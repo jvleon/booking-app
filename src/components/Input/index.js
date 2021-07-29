@@ -6,7 +6,7 @@ import {
   StyledInput
 } from './styled'
 
-const Input = ({ onChange, label, value, type }) => {
+const Input = ({ onChange, label, value, type, name }) => {
   return (
     <Container>
       <Label>
@@ -17,6 +17,7 @@ const Input = ({ onChange, label, value, type }) => {
         value={value}
         maxLength="90"
         type={type}
+        name={name}
         required
       />
     </Container>
@@ -31,7 +32,8 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string
 }
 
 export default Input

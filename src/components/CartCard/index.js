@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from '../Button'
 import ModalUserData from '../ModalUserData'
 import {
@@ -8,9 +8,28 @@ import {
 
 const CartCard = ({ date, from, to, id, passengers, cleanCart }) => {
   const [showModal, setShowModal] = useState(false)
+  const [form, setForm] = useState({
+    name: '',
+    lastName: '',
+    address: '',
+    email: ''
+  })
+  const [formValid, setFormValid] = useState(false)
+
+  useEffect(() => {
+    if(form.name !== '') {
+      setFormValid(true)
+    }
+  }, [form])
+
   return (
     <Container>
-      <ModalUserData show={showModal} closeModal={() => setShowModal(false)}/>
+      <ModalUserData
+        show={showModal} 
+        closeModal={() => setShowModal(false)}
+        form={form}
+        setParentForm={setForm}
+      />
       <Row>
         <div>
           <h4>No orden: {id}</h4>
@@ -52,7 +71,7 @@ const CartCard = ({ date, from, to, id, passengers, cleanCart }) => {
             onClick={() => setShowModal(!showModal)}
             text='Completar datos'
           />
-          <Button onClick={() => cleanCart(id)} primary text='Reservar' disabled={false} />
+          <Button onClick={() => cleanCart(id)} primary text='Reservar' disabled={!formValid} />
         </div>
       </Row>
     </Container>  
