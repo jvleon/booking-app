@@ -53,10 +53,14 @@ const ScheduleBar = ({ cities, ...props }) => {
   }
 
   const search = () => {
+    // randomly generate between 5 and 3 availables flights range
     const number = Math.random() * (5 - 3) + 3
     const flights = []
+    // default hours
     const hours = [2, 5, 8, 10, 16, 20]
+    // generate flights from a random number between 5 and 3
     for(let x = 0; x < number; x++) {
+      // get complete data from DB using the city id
       const from = cities.cities.filter(({ id }) => id === form.from)
       const to = cities.cities.filter(({ id }) => id === form.to)
       const newDate = new Date(form.date.setHours(hours[x]))
@@ -69,7 +73,6 @@ const ScheduleBar = ({ cities, ...props }) => {
       }
       flights.push(flight)
     }
-    console.log(flights)
     props.setSearch(flights)
   }
 

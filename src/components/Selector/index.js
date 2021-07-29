@@ -36,7 +36,11 @@ const Selector = ({ getValue }) => {
   return (
     <Container>
       <IconContainer>
-        <Button disabled={counter === 0} onClick={decrement}>
+        <Button
+          disabled={counter === 0}
+          onClick={decrement}
+          type="button"
+        >
           <FaMinus />
         </Button>
       </IconContainer>
@@ -47,7 +51,10 @@ const Selector = ({ getValue }) => {
         min={0}
       />
       <IconContainer>
-        <Button onClick={increment}>
+        <Button
+          type="button"
+          onClick={increment}
+        >
           <FaPlus />
         </Button>
       </IconContainer>

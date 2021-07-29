@@ -3,11 +3,18 @@ import {
   CLEAN_CART,
   REMOVE_FROM_CART,
   SEARCH_SUCCESS,
+  SET_INFO
 } from '../actions/actionTypes'
 
 const initialState = {
   orders: {},
-  search: []
+  search: [],
+  personalInfo: {
+    name: null,
+    lastName: null,
+    address: null,
+    email: null
+  }
 }
 
 const Cart = (state = initialState, { type, payload }) => {
@@ -21,7 +28,14 @@ const Cart = (state = initialState, { type, payload }) => {
     case CLEAN_CART:
       return {
         ...state,
-        orders: {}
+        orders: {},
+        search: [],
+        personalInfo: {
+          name: null,
+          lastName: null,
+          address: null,
+          email: null
+        }
       }
     case REMOVE_FROM_CART:
       return {
@@ -32,6 +46,11 @@ const Cart = (state = initialState, { type, payload }) => {
       return {
         ...state,
         search: [...payload]
+      }
+    case SET_INFO:
+      return {
+        ...state,
+        personalInfo: { ...payload }
       }
     default:
       return {

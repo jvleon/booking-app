@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import toast, { Toaster } from 'react-hot-toast';
 import { setToCart } from '../../actions'
 import Button from '../Button'
 import {
@@ -8,12 +9,19 @@ import {
   Title,
 } from './styled'
 
+
 const SearchResults = ({ search, ...props }) => {
+
   const save = (index) => {
     props.setToCart(search[index])
+    toast('Reserva agregada al carrito')
   }
+
   return (
     <Container>
+      <Toaster
+        position="top-center"
+      />
       <Title>Resultados de la busqueda:</Title>
       {
         search.map(({ date, from, to, passengers }, i) => (

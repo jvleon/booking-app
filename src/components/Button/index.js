@@ -8,6 +8,10 @@ const Button = ({ text, ...props }) => (
   </StyledButton>
 )
 
+Button.defaultProps = {
+  type: 'button'
+}
+
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
