@@ -6,9 +6,8 @@ import {
   Row
 } from './styled'
 
-const CartCard = ({ date, from, to, id, passengers, ...props}) => {
+const CartCard = ({ date, from, to, id, passengers, cleanCart }) => {
   const [showModal, setShowModal] = useState(false)
-  console.log('>>', props)
   return (
     <Container>
       <ModalUserData show={showModal} closeModal={() => setShowModal(false)}/>
@@ -53,7 +52,7 @@ const CartCard = ({ date, from, to, id, passengers, ...props}) => {
             onClick={() => setShowModal(!showModal)}
             text='Completar datos'
           />
-          <Button primary text='Reservar' disabled={false} />
+          <Button onClick={() => cleanCart(id)} primary text='Reservar' disabled={false} />
         </div>
       </Row>
     </Container>  

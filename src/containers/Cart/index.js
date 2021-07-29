@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { cleanCart } from '../../actions'
 import { Container, Title } from './styled'
 import CartCard from '../../components/CartCard'
 
-const Cart = ({ orders }) => (
+const Cart = ({ orders, ...props }) => (
   <Container>
     {orders.length > 0 ?
       orders.map((order, i) => (
-        <CartCard {...order} key={i} />
+        <CartCard cleanCart={props.cleanCart} {...order} key={i} />
       ))
       :
       (
@@ -21,4 +22,8 @@ const mapStateToProps = ({ cart }) => ({
   orders: cart.orders
 })
 
-export default connect(mapStateToProps, null)(Cart)
+const mapDispatchToProps = {
+  cleanCart
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

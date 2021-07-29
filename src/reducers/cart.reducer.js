@@ -28,9 +28,10 @@ const Cart = (state = initialState, { type, payload }) => {
         search: []
       }
     case CLEAN_CART:
+      const cleanedCart = state.orders.filter(({ id }) => id !== payload)
       return {
         ...state,
-        orders: {},
+        orders: [...cleanedCart],
         search: [],
         personalInfo: {
           name: null,
