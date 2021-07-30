@@ -4,14 +4,28 @@ export const Container = styled.section`
   padding: 1rem;
   margin-top: 3rem;
   width: 92%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   box-sizing: border-box;
   box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
   -webkit-box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
   -moz-box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
   border-radius: 10px;
+`
+
+export const Placesbox = styled.div`
+  width: 100%;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(4, 1fr);
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr)
+  }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr)
+  }
+  @media screen and (max-width: 645px) {
+    grid-template-columns: repeat(1, 1fr)
+  }
 `
 
 export const Title = styled.h2`
@@ -23,7 +37,6 @@ export const Title = styled.h2`
 export const Box = styled.div`
   height: 300px;
   max-width: 380px;
-  flex-grow: 1;
   margin-right: 1rem;
   margin-bottom: 1rem;
   border-radius: 5px;
@@ -38,20 +51,10 @@ export const Box = styled.div`
   box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
   -webkit-box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
   -moz-box-shadow: 1px 1px 16px -1px rgba(0,0,0,0.21);
-  @media screen and (max-width: 968px) {
-    max-width: 100%;
-    min-width: 100%;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    > img {
-      align-self: center;
-      width: 500px;
-      height: auto;
-    }
-  }
   @media screen and (max-width: 645px) {
     height: auto;
+    margin: 1rem auto;
+    width: 100%;
     > img {
       width: 100%;
     }
