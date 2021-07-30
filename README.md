@@ -11,3 +11,5 @@
 - run `cd booking-app/ && npm install`
 
 - for run the server `npm start` then the app will open the browser on localhost:3000
+
+[Demo available here](https://booking-app-jvleon.herokuapp.com/)
