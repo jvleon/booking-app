@@ -5,6 +5,7 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
+import { ToastProvider } from 'react-toast-notifications';
 import Home from './containers/Home'
 import Cart from './containers/Cart'
 import GlobalCSS from './utils/globalStyles'
@@ -16,11 +17,13 @@ function App() {
     <ThemeWrapper>
       <Provider store={store}>
         <GlobalCSS />
-        <Router>
-          <Navbar />
-          <Route exact path='/' component={Home} />
-          <Route path='/cart' component={Cart} />
-        </Router>
+        <ToastProvider>
+          <Router>
+            <Navbar />
+            <Route exact path='/' component={Home} />
+            <Route path='/cart' component={Cart} />
+          </Router>
+        </ToastProvider>
       </Provider>
     </ThemeWrapper>
   )

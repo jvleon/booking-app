@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { FaShoppingCart } from 'react-icons/fa'
 import {
   Container,
@@ -9,7 +10,7 @@ import {
   IconPlane,
 } from './styled'
 
-const Navbar = () => {
+const Navbar = ({ orders }) => {
   return (
     <Container>
       <Brand>
@@ -23,14 +24,22 @@ const Navbar = () => {
         </Link>
       </Brand>
       <ButtonsContainer>
-        <ButtonNavigation to='/login'>Login</ButtonNavigation>
-        <ButtonNavigation to='/help'>Help</ButtonNavigation>
         <ButtonNavigation to='/cart'>
-          <FaShoppingCart size="1.3rem" />
+          {
+            orders.length > 0 && 
+            (
+              <span>{orders.length}</span>
+            )
+          }
+          <FaShoppingCart size="1.5rem" />
         </ButtonNavigation>
       </ButtonsContainer>
     </Container>
   )
 }
 
-export default Navbar
+const mapStateToProps = ({ cart }) => ({
+  orders: cart.orders
+})
+
+export default connect(mapStateToProps, null)(Navbar)

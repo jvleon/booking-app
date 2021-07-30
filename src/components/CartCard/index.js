@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useToasts } from 'react-toast-notifications';
 import Button from '../Button'
 import ModalUserData from '../ModalUserData'
 import {
@@ -15,12 +16,21 @@ const CartCard = ({ date, from, to, id, passengers, cleanCart }) => {
     email: ''
   })
   const [formValid, setFormValid] = useState(false)
+  const { addToast } = useToasts()
 
   useEffect(() => {
     if(form.name !== '') {
       setFormValid(true)
     }
   }, [form])
+
+  const save = () => {
+    cleanCart(id)
+    addToast(
+      'Reserva completada',
+      { appearance: 'success', autoDismiss: true }
+    )
+  }
 
   return (
     <Container>
@@ -71,7 +81,7 @@ const CartCard = ({ date, from, to, id, passengers, cleanCart }) => {
             onClick={() => setShowModal(!showModal)}
             text='Completar datos'
           />
-          <Button onClick={() => cleanCart(id)} primary text='Reservar' disabled={!formValid} />
+          <Button onClick={save} primary text='Reservar' disabled={!formValid} />
         </div>
       </Row>
     </Container>  

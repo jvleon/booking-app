@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import toast, { Toaster } from 'react-hot-toast';
+import { useToasts } from 'react-toast-notifications';
 import { setToCart, resetSearch } from '../../actions'
 import Button from '../Button'
 import {
@@ -11,18 +11,19 @@ import {
 
 
 const SearchResults = ({ search, ...props }) => {
+  const { addToast } = useToasts()
 
   const save = (index) => {
     props.setToCart(search[index])
     props.resetSearch()
-    toast('Reserva agregada al carrito')
+    addToast(
+      'Reserva agregada al carrito',
+      { appearance: 'success', autoDismiss: true }
+    )
   }
 
   return (
     <Container>
-      <Toaster
-        position="top-center"
-      />
       <Title>Resultados de la busqueda:</Title>
       {
         search.map(({ date, from, to, passengers }, i) => (

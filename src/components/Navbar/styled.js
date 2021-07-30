@@ -28,11 +28,12 @@ export const ButtonsContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
 `
 
 export const ButtonNavigation = styled(Link)`
+  position: relative;
   text-decoration: none;
   font-weight: 600;
   font-size: 1.2rem;
@@ -40,6 +41,19 @@ export const ButtonNavigation = styled(Link)`
   color: ${({ theme: { colors } }) => colors.altern};
   :hover {
     color: ${({ theme: { colors } }) => colors.secondary};
+  }
+  > span {
+    border-radius: 50%;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    width: 1rem;
+    height: 1rem;
+    font-size: .8rem;
+    background-color: red;
+    position: absolute;
+    margin-top: -6px;
+    margin-left: 15px;
   }
 `
 

@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useToasts } from 'react-toast-notifications';
 import PropTypes from 'prop-types'
 import Button from '../Button'
 import Input from '../Input'
@@ -21,7 +22,13 @@ const ModalUserData = ({ show, closeModal, setParentForm }) => {
     email: ''
   })
 
+  const { addToast } = useToasts()
+
   const save = () => {
+    addToast(
+      'Datos guardados',
+      { appearance: 'success', autoDismiss: true }
+    )
     setParentForm({ ...form })
     closeModal()
   }
