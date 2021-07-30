@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import DB from '../../database.config'
 import { getCities } from '../../actions'
+import getCitiesFromDB from '../../services/getCities'
 import { Container, Main, Title } from './styled'
 import ScheduleBar from '../../components/SheduleBar'
 import Places from '../../components/Places'
@@ -9,10 +9,7 @@ import SearchResults from '../../components/SearchResults'
 
 const Home = ({ search, ...props }) => {
   useEffect(() => {
-    DB.ref('/cities').once('value', (snapshot) => {
-      const data = snapshot.val()
-      props.getCities(data)
-    })
+    getCitiesFromDB(props.getCities)
   }, [])
 
   return (
