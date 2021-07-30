@@ -3,12 +3,15 @@ import {
   CLEAN_CART,
   REMOVE_FROM_CART,
   SEARCH_SUCCESS,
-  SET_INFO
+  SET_INFO,
+  CLEAN_SEARCH,
+  RESET_SEARCH
 } from '../actions/actionTypes'
 
 const initialState = {
   orders: [],
   search: [],
+  searchReset: false,
   personalInfo: {
     name: null,
     lastName: null,
@@ -54,6 +57,16 @@ const Cart = (state = initialState, { type, payload }) => {
       return {
         ...state,
         personalInfo: { ...payload }
+      }
+    case RESET_SEARCH:
+      return {
+        ...state,
+        searchReset: true
+      }
+    case CLEAN_SEARCH:
+      return {
+        ...state,
+        searchReset: false
       }
     default:
       return {

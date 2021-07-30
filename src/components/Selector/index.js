@@ -7,13 +7,16 @@ import {
   Button
 } from './styled'
 
-const Selector = ({ getValue }) => {
+const Selector = ({ getValue, value }) => {
   const [counter, setCounter] = useState(0)
 
   useEffect(() => {
     getValue(counter)
   }, [counter])
 
+  useEffect(() => {
+    if(value !== counter) setCounter(value)
+  }, [value])
 
   const onChange = ({ target: { value } }) => {
     let data = parseInt(value)

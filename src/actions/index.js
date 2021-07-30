@@ -3,6 +3,8 @@ import {
   SEARCH_SUCCESS,
   SET_TO_CART,
   CLEAN_CART,
+  RESET_SEARCH,
+  CLEAN_SEARCH
 } from './actionTypes'
 
 export const getCities = (payload) => ({
@@ -23,4 +25,13 @@ export const setToCart = (payload) => ({
 export const cleanCart = (payload) => ({
   type: CLEAN_CART,
   payload
+})
+
+
+export const resetSearch = () => ({
+  type: RESET_SEARCH
+})
+
+export const clearSearch = () => ({
+  type: CLEAN_SEARCH
 })

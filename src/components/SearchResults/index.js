@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import toast, { Toaster } from 'react-hot-toast';
-import { setToCart } from '../../actions'
+import { setToCart, resetSearch } from '../../actions'
 import Button from '../Button'
 import {
   Container,
@@ -14,6 +14,7 @@ const SearchResults = ({ search, ...props }) => {
 
   const save = (index) => {
     props.setToCart(search[index])
+    props.resetSearch()
     toast('Reserva agregada al carrito')
   }
 
@@ -68,7 +69,8 @@ const mapStateToProps = ({ cart }) => ({
 })
 
 const mapDispatchToProps = {
-  setToCart
+  setToCart,
+  resetSearch
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)

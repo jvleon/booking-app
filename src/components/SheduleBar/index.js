@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import DatePicker from 'react-datepicker'
 import { connect } from 'react-redux'
-import { setSearch } from '../../actions'
+import { setSearch, clearSearch } from '../../actions'
 import Button from '../Button'
 import Selector from '../Selector'
 import {
@@ -12,18 +12,20 @@ import {
 } from './styled'
 import 'react-datepicker/dist/react-datepicker.css'
 
-
-const ScheduleBar = ({ cities, ...props }) => {
-
+const ScheduleBar = ({ cities, cart, ...props }) => {
   const d = new Date()
   d.setDate(d.getDate() + 1)
 
-  const [form, setForm] = useState({
-    from: '',
-    to: '',
+  const initialState = {
+    fromValue: null,
+    toValue: null,
+    from: null,
+    to: null,
     date: d,
     passengers: 0,
-  })
+  }
+
+  const [form, setForm] = useState({ ...initialState })
   const [formValid, setFormValid] = useState(false)
   const [citiesList, setCitiesList] = useState([])
 
@@ -35,14 +37,22 @@ const ScheduleBar = ({ cities, ...props }) => {
   }, [cities])
 
   useEffect(() => {
-    if(form.from !== '' && form.to !== '' && form.date !== '' && form.passengers > 0) {
+    if(form.from !== null && form.to !== null && form.date !== null && form.passengers > 0) {
       setFormValid(true)
     } else setFormValid(false)
   }, [form])
 
-  const onChange = ({ value }, field) => {
+  useEffect(() => {
+    if(cart.searchReset) {
+      props.clearSearch()
+      setForm({ ...initialState })
+    }
+  }, [cart.searchReset])
+
+  const onChange = ({ value, label }, field, valueField) => {
     const newForm = form
     newForm[field] = value
+    newForm[valueField] = { value, label }
     setForm({ ...newForm })
   }
   
@@ -80,11 +90,19 @@ const ScheduleBar = ({ cities, ...props }) => {
     <Container>
       <Box>
         <Label>Origen</Label>
-        <Select onChange={(e) => onChange(e, 'from')} options={citiesList} />
+        <Select
+          onChange={(e) => onChange(e, 'from', 'fromValue')}
+          options={citiesList}
+          value={form.fromValue}
+        />
       </Box>
       <Box>
         <Label>Destino</Label>
-        <Select onChange={(e) => onChange(e, 'to')} options={citiesList} />
+        <Select
+          onChange={(e) => onChange(e, 'to', 'toValue')}
+          options={citiesList}
+          value={form.toValue}
+        />
       </Box>
       <Box flex="5">
         <Label>Fecha</Label>
@@ -97,7 +115,7 @@ const ScheduleBar = ({ cities, ...props }) => {
       </Box>
       <Box flex="1">
         <Label>Pasajeros</Label>
-        <Selector getValue={(e) => onChangeWithValue(e, 'passengers') } options={cities} />
+        <Selector value={form.passengers} getValue={(e) => onChangeWithValue(e, 'passengers') } options={cities} />
       </Box>
       <Box flex="2">
         <Button onClick={search} disabled={!formValid} text='Buscar' primary/>
@@ -106,12 +124,14 @@ const ScheduleBar = ({ cities, ...props }) => {
   )
 }
 
-const mapStateToProps = ({ cities }) => ({
-  cities
+const mapStateToProps = ({ cities, cart }) => ({
+  cities,
+  cart
 })
 
 const mapDispatchToProps = {
-  setSearch
+  setSearch,
+  clearSearch
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleBar)
