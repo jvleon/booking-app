@@ -28,10 +28,14 @@ const ScheduleBar = ({ cities, cart, ...props }) => {
   const [form, setForm] = useState({ ...initialState })
   const [formValid, setFormValid] = useState(false)
   const [citiesList, setCitiesList] = useState([])
+  const [citiesListFrom, setCitiesListFrom] = useState([])
+  const [citiesListTo, setCitiesListTo] = useState([])
 
   useEffect(() => {
     if(cities.cities.length > 0) {
       const list = cities.cities.map(({ city_name, id }) => ({ value: id, label: city_name }))
+      setCitiesListFrom(list)
+      setCitiesListTo(list)
       setCitiesList(list)
     }
   }, [cities])
@@ -40,6 +44,26 @@ const ScheduleBar = ({ cities, cart, ...props }) => {
     if(form.from !== null && form.to !== null && form.date !== null && form.passengers > 0) {
       setFormValid(true)
     } else setFormValid(false)
+    /// validate no-repeat city on select
+    if(form.from !== null) {
+      // when the new value is equal to a existing value, reset the old value
+      if(form.from === form.to) setForm({ ...form, to: null, toValue: null })
+      // when city is selectd delete from the other slect list
+      const newlist = citiesListTo.filter(({ value }) => value !== form.from)
+      // set the filtered list
+      setCitiesListTo([ ...newlist ])
+      // restore the current list
+      setCitiesListFrom([ ...citiesList ])
+    } else if (form.to !== null) {
+      // when the new value is equal to a existing value, reset the old value
+      if(form.to === form.from) setForm({ ...form, from: null, fromValue: null })
+        // when city is selectd delete from the other slect list
+      const newlist = citiesListFrom.filter(({ value }) => value !== form.to)
+      // set the filtered list      
+      setCitiesListFrom([ ...newlist ])
+      // restore the current list
+      setCitiesListTo([ ...citiesList ])
+    }
   }, [form])
 
   useEffect(() => {
@@ -92,7 +116,7 @@ const ScheduleBar = ({ cities, cart, ...props }) => {
         <Label>Origen</Label>
         <Select
           onChange={(e) => onChange(e, 'from', 'fromValue')}
-          options={citiesList}
+          options={citiesListFrom}
           value={form.fromValue}
         />
       </Box>
@@ -100,7 +124,7 @@ const ScheduleBar = ({ cities, cart, ...props }) => {
         <Label>Destino</Label>
         <Select
           onChange={(e) => onChange(e, 'to', 'toValue')}
-          options={citiesList}
+          options={citiesListTo}
           value={form.toValue}
         />
       </Box>
